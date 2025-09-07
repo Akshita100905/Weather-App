@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #a3d8ff, #eaf6ff);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Welcome Page */
+.welcome-page {
+  text-align: center;
+  background: white;
+  padding: 30px 25px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  width: 90%;
+  max-width: 400px;
+}
+.welcome-page h1 { margin-bottom: 10px; }
+.welcome-page p { margin: 10px 0; }
+.welcome-page select, .welcome-page input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+.welcome-page button {
+  padding: 12px 20px;
+  background: #66a6ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.hidden { display: none; }
+
+/* App Layout */
+.app{width:100%;max-width:980px;position:relative;z-index:10;padding:20px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+header h1{font-size:20px;color:#032B4A}
+header button{background:#f3f4f6;border:1px solid #e5e7eb;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+/* Weather box */
+.weather-box{display:flex;gap:18px;background:white;padding:18px;border-radius:12px;box-shadow:0 8px 20px rgba(2,6,23,.08);align-items:center}
+.weather-left{display:flex;flex-direction:column;align-items:center}
+.icon{font-size:48px}
+.temp{font-size:34px;font-weight:700;color:#032B4A}
+.desc{color:#666;margin-top:6px}
+.weather-right p{margin:6px 0}
+
+/* Forecast */
+.forecast{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px}
+.forecast .day{background:#f8faff;padding:12px;border-radius:10px;border:1px solid #eee}
+
+/* Chatbot */
+.chatbot{position:fixed;right:18px;bottom:18px;display:flex;gap:10px;align-items:flex-end}
+.mascot{width:60px;height:60px;background:#fff;border-radius:50%;font-size:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.2)}
+.chat-window{width:280px;background:white;border-radius:12px;box-shadow:0 16px 40px rgba(2,6,23,.18);overflow:hidden}
+.chat-log{max-height:260px;overflow:auto;padding:10px;display:flex;flex-direction:column;gap:8px}
+.bot-msg, .user-msg{padding:8px 10px;border-radius:10px;max-width:86%}
+.bot-msg{background:#eef2ff;color:#0b2a66;align-self:flex-start}
+.user-msg{background:#e6ffed;align-self:flex-end}
+.chat-controls{display:flex;padding:8px;border-top:1px solid #eef2ff}
+.chat-controls input{flex:1;padding:8px;border-radius:8px;border:1px solid #ddd}
+.chat-controls button{margin-left:6px;padding:8px 10px;border-radius:8px;border:none;background:#66a6ff;color:white;cursor:pointer}
+
+/* Weather Effects */
+.rain{position:fixed;inset:0;overflow:hidden;z-index:1}
+.raindrop{position:absolute;width:2px;height:18vh;background:rgba(255,255,255,0.6);animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(120vh)}}
+.cloud {position:absolute;top:6vh;left:10%;width:220px;height:80px;background:#fff;border-radius:50px;animation:drift 25s linear infinite;}
+.cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud::before{width:120px;height:120px;left:-50px;top:-40px}
+.cloud::after{width:100px;height:100px;right:-30px;top:-30px}
+@keyframes drift{0%{transform:translateX(-20vw)}100%{transform:translateX(120vw)}}
+.sun{position:fixed;right:6vw;top:6vh;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#fff6c8,#ffd24d 60%,#ffb347 90%);box-shadow:0 10px 30px rgba(255,180,0,0.3);animation:sunPulse 8s infinite}
+@keyframes sunPulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Breezy Weather App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Welcome Page -->
+  <section id="welcome" class="welcome-page">
+    <h1>🌦 Welcome to Breezy Weather</h1>
+    <p>Select a city to get started</p>
+    <select id="citySelect">
+      <option value="">-- Choose a city --</option>
+      <option value="Delhi,in">Delhi</option>
+      <option value="Mumbai,in">Mumbai</option>
+      <option value="Bengaluru,in">Bengaluru</option>
+      <option value="Chennai,in">Chennai</option>
+      <option value="Kolkata,in">Kolkata</option>
+      <option value="Jaipur,in">Jaipur</option>
+      <option value="Pune,in">Pune</option>
+      <option value="Hyderabad,in">Hyderabad</option>
+    </select>
+    <p class="or">or enter another city:</p>
+    <input id="cityFree" placeholder="Example: Udaipur,in" />
+    <button id="enterBtn">Get Weather</button>
+  </section>
+
+  <!-- Main App -->
+  <section id="app" class="app hidden">
+    <header>
+      <h1>Weather in <span id="locName">—</span></h1>
+      <button id="changeCity">🔄 Change City</button>
+    </header>
+
+    <main>
+      <div id="weatherBox" class="weather-box">
+        <div class="weather-left">
+          <div id="weatherIcon" class="icon">☀️</div>
+          <div id="temp" class="temp">-- °C</div>
+          <div id="desc" class="desc">--</div>
+        </div>
+        <div class="weather-right">
+          <p><strong>Humidity:</strong> <span id="hum">--</span>%</p>
+          <p><strong>Wind:</strong> <span id="wind">--</span> m/s</p>
+          <p><strong>Feels like:</strong> <span id="feel">--</span>°C</p>
+        </div>
+      </div>
+
+      <section id="forecast" class="forecast"></section>
+    </main>
+
+    <!-- Mascot Chatbot -->
+    <div id="chatbot" class="chatbot">
+      <div class="mascot">🐧</div>
+      <div class="chat-window">
+        <div id="chatLog" class="chat-log">
+          <div class="bot-msg">Hi, I’m Breezy 🐧! Ask me about the weather.</div>
+        </div>
+        <div class="chat-controls">
+          <input id="chatInput" placeholder="Ask: What's the weather in Jaipur?" />
+          <button id="micBtn" title="Voice input">🎤</button>
+          <button id="sendBtn">Send</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sounds -->
+  <audio id="rainSound" loop src="rain.mp3"></audio>
+  <audio id="windSound" loop src="wind.mp3"></audio>
+  <audio id="birdsSound" loop src="birds.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
