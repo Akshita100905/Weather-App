@@ -1,4 +1,4 @@
-const API_KEY = "5773844476d0093f3a914a4a356fb8ef";
+const API_KEY = "5773844476d0093f3a914a4a356f****"; // Add Your Own Key
 
 const welcome = document.getElementById("welcome");
 const app = document.getElementById("app");
@@ -214,4 +214,5 @@ chatInput.addEventListener("keypress", function(e) {
     chatInput.value = "";
   }
 });
+
 
