@@ -27,7 +27,7 @@ const birdsSound = document.getElementById("birdsSound");
 let currentCity = "";
 let selectedVoice = null;
 
-/* Load pleasant voice */
+
 function loadVoices() {
   const voices = speechSynthesis.getVoices();
   selectedVoice = voices.find(v =>
@@ -49,7 +49,7 @@ function speak(text) {
   speechSynthesis.speak(utter);
 }
 
-/* Page flow */
+
 enterBtn.onclick = () => {
   const city = cityFree.value.trim() || citySelect.value;
   if (!city) { alert("Select or enter a city"); return; }
@@ -63,7 +63,7 @@ changeCity.onclick = () => {
   welcome.classList.remove("hidden");
 };
 
-/* Fetch weather */
+
 async function fetchWeather(city) {
   const urlCur = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
   const urlFor = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
@@ -85,10 +85,10 @@ async function fetchWeather(city) {
                             cond.includes("rain") ? "🌧️" :
                             cond.includes("clear") ? "☀️" : "🌤️";
 
-  // Effects + sounds
+ 
   setEffects(cond);
 
-  // Forecast
+  
   forecastEl.innerHTML = "";
   const today = new Date().getDate();
   let days = [];
@@ -111,7 +111,7 @@ async function fetchWeather(city) {
   speak(`The weather in ${cur.name} is ${cur.main.temp.toFixed(1)} degrees, with ${cur.weather[0].description}.`);
 }
 
-/* Effects */
+
 function setEffects(cond) {
   document.querySelectorAll(".rain,.cloud,.sun").forEach(e => e.remove());
   [rainSound, windSound, birdsSound].forEach(a => { a.pause(); a.currentTime = 0; });
@@ -145,7 +145,7 @@ function createSun(){
   s.className="sun"; document.body.appendChild(s);
 }
 
-/* Chatbot */
+
 function appendMsg(text, type) {
   const div = document.createElement("div");
   div.className = type === "bot" ? "bot-msg" : "user-msg";
@@ -160,27 +160,26 @@ function handleChat(msg) {
 
   const lower = msg.toLowerCase();
 
-  // ✅ Regex: look for a city word (with optional ,xx country code) after common phrases
-  // Example matches: "weather in Paris,fr", "what about jaipur", "tokyo"
+
   const match = lower.match(/(?:weather\s*(?:in)?\s*|in\s*|about\s*|tell me\s*|how is\s*|^)([a-zA-Z\s]+?)(?:,([a-z]{2}))?$/);
 
   if (match && match[1]) {
     let cityName = match[1].trim();
 
-    // Ignore if cityName is empty or just filler words
+    
     const ignoreWords = ["weather", "in", "about", "tell", "what", "how", "is", "the", "me"];
     if (ignoreWords.includes(cityName.toLowerCase())) {
       appendMsg("Please mention a city 🌍 (e.g., Jaipur, Paris, Tokyo)", "bot");
       return;
     }
 
-    // Capitalize properly
+   
     cityName = cityName
       .split(" ")
       .map(w => w.charAt(0).toUpperCase() + w.slice(1))
       .join(" ");
 
-    // Add country code if given, else default India
+    
     let countryCode = match[2] ? match[2].toLowerCase() : "in";
     const fullCity = `${cityName},${countryCode}`;
 
@@ -190,24 +189,24 @@ function handleChat(msg) {
     return;
   }
 
-  // ✅ If message only mentions "weather"
+
   if (lower.includes("weather")) {
     appendMsg("Fetching latest weather 🌦", "bot");
     fetchWeather(currentCity);
     return;
   }
 
-  // Fallback
+  
   appendMsg("Tell me a city 🌍 (e.g., Jaipur, Paris, Tokyo)", "bot");
 }
 
-// ✅ Send button
+
 sendBtn.onclick = () => {
   handleChat(chatInput.value.trim());
   chatInput.value = "";
 };
 
-// ✅ Enter key = send message
+
 chatInput.addEventListener("keypress", function(e) {
   if (e.key === "Enter") {
     e.preventDefault();
@@ -215,3 +214,4 @@ chatInput.addEventListener("keypress", function(e) {
     chatInput.value = "";
   }
 });
+
